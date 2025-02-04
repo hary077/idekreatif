@@ -6,7 +6,7 @@ include '.includes/header.php';
 <div class="container-xxl flex-grow-1 container-p-y">
 <!--Judul halaman-->
 <div class="row">
-    <!--from untuk menambahakan postingan baru-->
+    <!--from untuk menambahakan postingan baruu-->
 <div class="col-md-10">
     <div class="card mb-4">
       <div class="card-body">
