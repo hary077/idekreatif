@@ -76,7 +76,7 @@ while ($category = mysqli_fetch_assoc($exec)): // Loop untuk setiap kategori
         </div>
     </div>
 </div>
- <!-- modal untuk update kategory -->
+ <!-- modal untuk update kategoryy -->
  <div id="editCategory_<?= $category['category_id']; ?>" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
