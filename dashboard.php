@@ -3,17 +3,20 @@ include (".includes/header.php");
 $title = "Dashboard";
 include '.includes/toast_notification.php';
 ?>
-
 <div calss="container-xxl flex-grow-1 container-p-y">
+
     <div class="card">
+
         <div class="card">
+
             <div class="card-header d-flex justify-content-between
             align-items-center">
-            <h4>Semua Postingan</h4>
-</div>
-<div class="card-body">
-    <div class="table-responsive text-nowrap">
-        <table id="datatable" class="table table-hover">
+
+             <h4>Semua Postingan</h4>
+            </div>
+            <div class="card-body">
+            <div class="table-responsive text-nowrap">
+             <table id="datatable" class="table table-hover">
             <head>
                 <tr class="text-center">
                     <th width="50px">#</th>
@@ -21,9 +24,9 @@ include '.includes/toast_notification.php';
                     <th>Penulis</th>
                     <th>Kategori</th>
                     <th width="150px">Pilih</th>
-</tr>
-</thead>
-<tbody class="table-border-bottom-0">
+                </tr>
+                </thead>
+            <tbody class="table-border-bottom-0">
 
 <!--menampilkan data dari table database-->
 <?php

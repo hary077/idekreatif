@@ -9,7 +9,7 @@ session_start();
 $userId = $_SESSION ["user_id"];
 
 //menangani from untuk menambahkan postingan baru
-if (insset($_POST['simpan'])){
+if (isset($_POST['simpan'])){
     //mendaptakan data dari from
     $postTitle = $_POST["post_title"];
     $content = $_POST["content"];
@@ -30,7 +30,7 @@ if (insset($_POST['simpan'])){
                 'message' => 'Error adding post:  ' .$conn->error
             ];
         }
-    }eles{
+    }else{
         $_SESSION['notification'] = [
             'type' => 'danger',
             'message' => 'Failed to upload image.'
@@ -38,5 +38,22 @@ if (insset($_POST['simpan'])){
     }
 
     header('location: dashboard.php');
+    exit();
+}
+
+if (isset($_POST['delete'])) {
+    $postID = $_POST['postID'];
+
+    $exec = mysqli_query($conn, "DELETE FROM posts WHERE id_post='$postID'");
+
+    if ($exec) {
+        $_SESSION['notification'] = [
+            'type' => 'primary',
+            'message' => 'Error deleting post: ' .
+            mysqli_error($conn)
+        ];
+    }
+
+    header('Location: dashboard.php');
     exit();
 }
