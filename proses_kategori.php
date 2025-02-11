@@ -1,46 +1,41 @@
 <?php
 
-// Menghubungkan ke file konfigurasi database
 include("config.php");
 
-// Memulai sesi untuk menyimpan notifikasi
 session_start();
 
-// Proses penambahan kategori baru
 if (isset($_POST['simpan'])) {
+    $category_name = $_POST['category_name'];
 
-    $category_name = $_POST['category_name']; // Mengambil data nama kategori dari form
-
-    //Query untuk menambahkan data kategori ke dalam database
     $query = "INSERT INTO categories (category_name) VALUES ('$category_name')";
-    $exec = mysqli_query($conn, $query);
+    $exec = mysqli_query($conn,$query);
 
-    // Menyiapkan notifikasi berhasil atau gagal ke dalam session
     if ($exec) {
         $_SESSION['notification'] = [
-            'type' => 'primary', // Jenis notifikasi (contoh: primary untuk keberhasilan)
-            'message' => 'Kategori berhasil ditambahkan!'
+            'type' => 'primary',
+            'message' => 'kategori berhasil ditambah!'
         ];
+    
     } else {
         $_SESSION['notification'] = [
-            'type' => 'danger', // Jenis notifikasi (contoh: danger untuk kegagalan)
+            'type' => 'denger',
             'message' => 'Gagal menambahkan kategori: ' . mysqli_error($conn)
         ];
     }
 
-    // Redirect kembali ke halaman kategori
     header('Location: kategori.php');
     exit();
 }
+
 // Proses penghapusan kategori
 if (isset($_POST['delete'])) {
+    // Mengambil ID kategori dari parameter URL
+    $catID = $_POST['catID'];
 
-    $catID = $_POST['catID']; // Mengambil ID kategori dari parameter URL
-    
     // Query untuk menghapus kategori berdasarkan ID
     $exec = mysqli_query($conn, "DELETE FROM categories WHERE category_id='$catID'");
-    
-    // Menyiapkan notifikasi keberhasilan atau kegagalan ke dalam session
+
+    // Menyimpan notifikasi keberhasilan atau kegagalan ke dalam session
     if ($exec) {
         $_SESSION['notification'] = [
             'type' => 'primary',
@@ -52,23 +47,23 @@ if (isset($_POST['delete'])) {
             'message' => 'Gagal menghapus kategori: ' . mysqli_error($conn)
         ];
     }
-    
+
     // Redirect kembali ke halaman kategori
     header('Location: kategori.php');
     exit();
-    }
+}
+
 // Proses pembaruan kategori
 if (isset($_POST['update'])) {
-
-    // Mengambil data dari form pembaruan
+    
     $catID = $_POST['catID'];
     $category_name = $_POST['category_name'];
+
     
-    // Query untuk memperbarui data kategori berdasarkan ID
-    $query = "UPDATE categories SET category_name = '$category_name' WHERE category_id = '$catID'";
+    $query = "UPDATE categories SET category_name = '$category_name' WHERE category_id='$catID'";
     $exec = mysqli_query($conn, $query);
-    
-    // Menyiapkan notifikasi keberhasilan atau kegagalan ke dalam session
+
+    // Menyimpan notifikasi keberhasilan atau kegagalan ke dalam session
     if ($exec) {
         $_SESSION['notification'] = [
             'type' => 'primary',
@@ -80,9 +75,9 @@ if (isset($_POST['update'])) {
             'message' => 'Gagal memperbarui kategori: ' . mysqli_error($conn)
         ];
     }
-    
+
     // Redirect kembali ke halaman kategori
     header('Location: kategori.php');
     exit();
-    }
-    ?>
+}
+?>

@@ -4,6 +4,7 @@ include '.includes/header.php';
 // Menyertakan file untuk menampilkan notifikasi (jika ada)
 include '.includes/toast_notification.php';
 ?>
+
 <div class="container-xxl flex-grow-1 container-p-y">
     <!-- Tabel data kategori -->
     <div class="card">
@@ -25,17 +26,21 @@ include '.includes/toast_notification.php';
 </tr>
 </thead>
 <tbody class="table-border-bottom-0">
+
+
 <!-- Mengambil data kategori dari database -->
 <?php
 $index = 1;
 $query = "SELECT * FROM categories";
 $exec = mysqli_query($conn, $query); // Pastikan $conn sudah didefinisikan (koneksi database)
+
 while ($category = mysqli_fetch_assoc($exec)): // Loop untuk setiap kategori
 ?>
     <tr>
         <!-- menampilkan nomor kategori, dan opsi -->
         <td><?= $index++; ?></td>
          <td><?= $category['category_name']; ?></td> 
+
          <td>
             <!-- dropdown untuk opsi edit dan delete -->
             <div class="dropdown">
@@ -52,6 +57,7 @@ while ($category = mysqli_fetch_assoc($exec)): // Loop untuk setiap kategori
                 </div>
             </div>
         </td>
+
     </tr>
 <!-- modal untuk hapus data kategori -->
 <div class="modal fade" id="deleteCategory_<?= $category['category_id']; ?>" tabindex="-1" aria-hidden="true">
@@ -76,7 +82,7 @@ while ($category = mysqli_fetch_assoc($exec)): // Loop untuk setiap kategori
         </div>
     </div>
 </div>
- <!-- modal untuk update kategoryy -->
+ <!-- modal untuk update kategory -->
  <div id="editCategory_<?= $category['category_id']; ?>" class="modal fade" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -101,6 +107,7 @@ while ($category = mysqli_fetch_assoc($exec)): // Loop untuk setiap kategori
         </div>
     </div>
 </div>
+
 <?php endwhile; ?>
 </tbody>
 </table>
@@ -109,6 +116,7 @@ while ($category = mysqli_fetch_assoc($exec)): // Loop untuk setiap kategori
 </div>
 </div>
 <?php include '.includes/footer.php'; ?>
+
 <!--modal untuk tambah data kategory --> 
 <div class="modal fade" id="addCategory" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog" role="document">
